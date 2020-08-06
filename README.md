@@ -2,7 +2,7 @@
 
 ### testcafe-reporter-slack
 
-This is a reporter for [TestCafe](http://devexpress.github.io/testcafe). It sends the output of the test to [Slack](https://slack.com/).
+This is a reporter for [TestCafe](http://devexpress.github.io/testcafe). It sends the output of test(s) to [Slack](https://slack.com/).
 
 ## Purpose :dart:
 
@@ -46,7 +46,7 @@ Add a reporter name (`slack`) to your `reporter` object:
     {
       "name": "spec"
     }
-  ]
+  ],
 }
 ```
 
@@ -76,7 +76,7 @@ This is **required minimum to has it working**.
 
 ## Options :gear:
 
-Slack reporter have few options which could be configured from both, `.testcaferc.json` or `.env` file as global variables.
+This Slack reporter has a few options which could be configured from both, `.testcaferc.json` or `.env` file as global variables.
 **It will first retrieve the values from the TestCafe config file `.testcaferc.json`**, after that from `.env` file.
 
 - :warning: - **required**
