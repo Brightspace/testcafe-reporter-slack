@@ -1,12 +1,11 @@
-# DEPRECATED
-I don't maintain this repo (anymore). Just fork and alter it
+# TestCafe Reporter Slack for face-ui-automation
 
-# TestCafe Reporter Slack 
 ### testcafe-reporter-slack
 
 This is a reporter for [TestCafe](http://devexpress.github.io/testcafe). It sends the output of the test to [Slack](https://slack.com/).
 
 ## Purpose :dart:
+
 Once configured the reporter sends test results to Slack channel, e.g.
 
 ![Slack report - success](assets/slack-report-success.png)
@@ -15,26 +14,37 @@ Once configured the reporter sends test results to Slack channel, e.g.
 
 ## Installation :construction:
 
-Install this reporter as your test project dependency:
+Install this reporter as your test project dependency (already done in `face-ui-automation`):
 
 ```bash
-yarn add testcafe-reporter-slack
+npm i testcafe-reporter-slack --save
 ```
 
+## Modifying the reporter:
+
+Any changes made in the `src` directory need to be processed and outputted to `lib` using `npm run build`—which will use the methods defined in `Gulpfile.js` for the build.
+
+It's recommened you `npm link` this repo to the `face-ui-automation` repo when developing locally. Remember to `npm run build` everytime you make changes to the reporter.
+
 ## Setup instructions :wrench:
+
 In order to use this TestCafe reporter plugin, it is necessary to add it as your reporter to your TestCafe.
- 
+
 ### Using `.testcaferc.json` config file
 
 Add a reporter name (`slack`) to your `reporter` object:
 
 ```json
 {
-  "browsers": [ "chrome" ],
-  "src": "scenarios",
+  "browsers": ["chrome"],
   "reporter": [
     {
       "name": "slack"
+    }
+  ],
+  "reporter": [
+    {
+      "name": "spec"
     }
   ]
 }
@@ -46,11 +56,11 @@ Pass the reporter name (`slack`) to the `reporter()` method:
 
 ```js
 testCafe
-    .createRunner()
-    .src('path/to/test/file.js')
-    .browsers('chrome')
-    .reporter('slack') // <-
-    .run();
+  .createRunner()
+  .src("path/to/test/file.js")
+  .browsers("chrome")
+  .reporter("slack") // <-
+  .run();
 ```
 
 ### Necessary configuration
@@ -69,15 +79,16 @@ This is **required minimum to has it working**.
 Slack reporter have few options which could be configured from both, `.testcaferc.json` or `.env` file as global variables.
 **It will first retrieve the values from the TestCafe config file `.testcaferc.json`**, after that from `.env` file.
 
-* :warning: - **required**
-* :balloon: - optional
-* :link: - deprecated
+- :warning: - **required**
+- :balloon: - optional
+- :link: - deprecated
 
 #### Slack Webhook URL :warning:
 
 **This option is required!** Your Slack channel webhook URL generated from Slack API to allow reporter post there.
 It's **not recommended** to pass your `webhookUrl` into the config file, in this case, due to sensitive data, it's **better to pass it via global variable** in `.env` file.
-* via `.testcaferc.json`
+
+- via `.testcaferc.json`
 
 ```json
 {
@@ -88,40 +99,18 @@ It's **not recommended** to pass your `webhookUrl` into the config file, in this
 }
 ```
 
-* via `.env` file
+- via `.env` file
 
 ```dotenv
 # .env
 TESTCAFE_SLACK_WEBHOOK=https://hooks.slack.com/services/*****
 ```
 
-#### Channel :balloon: :link:
-
-Your Slack channel name where you want to post reports.
-
-* via `.testcaferc.json`
-
-```json
-{
-  "name": "slack",
-  "options": {
-    "channel": "#testcafe"
-  }
-}
-```
-
-* via `.env` file
-
-```dotenv
-# .env
-TESTCAFE_SLACK_CHANNEL="#testcafe"
-```
-
 #### Username :balloon: :link:
 
 Your Slack app username.
 
-* via `.testcaferc.json`
+- via `.testcaferc.json`
 
 ```json
 {
@@ -132,7 +121,7 @@ Your Slack app username.
 }
 ```
 
-* via `.env` file
+- via `.env` file
 
 ```dotenv
 # .env
@@ -143,7 +132,7 @@ TESTCAFE_SLACK_USERNAME=testcafebot
 
 Choose your report logging level, if you want to see each test with error stack trace, choose `TEST` (default). The second one is short & condensed which show the only number of tests which passed, failed and was skipped - `SUMMARY`.
 
-* via `.testcaferc.json`
+- via `.testcaferc.json`
 
 ```json
 {
@@ -154,7 +143,7 @@ Choose your report logging level, if you want to see each test with error stack 
 }
 ```
 
-* via `.env` file
+- via `.env` file
 
 ```dotenv
 # .env
@@ -165,7 +154,7 @@ TESTCAFE_SLACK_LOGGING_LEVEL=SUMMARY
 
 Choose if you want to have messages in the terminal about sending specific messages to Slack, it's turned off by default.
 
-* via `.testcaferc.json`
+- via `.testcaferc.json`
 
 ```json
 {
@@ -176,14 +165,13 @@ Choose if you want to have messages in the terminal about sending specific messa
 }
 ```
 
-* via `.env` file
+- via `.env` file
 
 ```dotenv
 # .env
 TESTCAFE_SLACK_QUIET_MODE=true
 ```
 
-[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
-
 ## Further Documentation :books:
+
 [TestCafe Reporter Plugins](https://devexpress.github.io/testcafe/documentation/extending-testcafe/reporter-plugin/)
