@@ -8,6 +8,8 @@ This is a reporter for [TestCafe](http://devexpress.github.io/testcafe). It send
 
 Once configured the reporter sends test results to Slack channel, e.g.
 
+**SUMMARY logging level output reports**
+
 ![Slack report - success](assets/slack-report-success.png)
 
 ![Slack report - failed](assets/slack-report-failed.png)
@@ -40,13 +42,11 @@ Add a reporter name (`slack`) to your `reporter` object:
   "reporter": [
     {
       "name": "slack"
-    }
-  ],
-  "reporter": [
+    },
     {
       "name": "spec"
     }
-  ],
+  ]
 }
 ```
 
