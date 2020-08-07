@@ -29,9 +29,10 @@ export default function () {
       );
     },
 
-    reportFixtureStart(name, path) {
+    reportFixtureStart(name, path, meta) {
       this.currentFixtureName = name;
-
+      this.currentFixtureMeta = meta;
+      this.slack.addMessage(bold(this.currentFixtureMeta.siteName));
       if (loggingLevel === LoggingLevels.TEST)
         this.slack.addMessage(bold(this.currentFixtureName));
     },
