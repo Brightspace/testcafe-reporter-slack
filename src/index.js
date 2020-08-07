@@ -32,9 +32,15 @@ export default function () {
     reportFixtureStart(name, path, meta) {
       this.currentFixtureName = name;
       this.currentFixtureMeta = meta;
-      this.slack.addMessage(bold(this.currentFixtureMeta.siteName));
-      if (loggingLevel === LoggingLevels.TEST)
-        this.slack.addMessage(bold(this.currentFixtureName));
+      this.slack.addMessage(
+        "*Site Tested Against:* <" +
+          this.currentFixtureMeta.siteName +
+          "|" +
+          this.currentFixtureMeta.siteName.match(/https:\/\/(\w+)/)[1] +
+          ">"
+      );
+      this.slack.addMessage(`${bold(this.currentFixtureName)}`);
+      // if (loggingLevel === LoggingLevels.TEST)
     },
 
     reportTestDone(name, testRunInfo) {
