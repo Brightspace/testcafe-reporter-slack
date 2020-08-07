@@ -1,4 +1,4 @@
-# TestCafe Reporter Slack for face-ui-automation
+# TestCafe Reporter Slack for face-ui-test
 
 ### testcafe-reporter-slack
 
@@ -14,7 +14,7 @@ Once configured the reporter sends test results to Slack channel, e.g.
 
 ## Installation :construction:
 
-Install this reporter as your test project dependency (already done in `face-ui-automation`):
+Install this reporter as your test project dependency (already done in `face-ui-test`):
 
 ```bash
 npm i testcafe-reporter-slack --save
@@ -24,7 +24,7 @@ npm i testcafe-reporter-slack --save
 
 Any changes made in the `src` directory need to be processed and outputted to `lib` using `npm run build`—which will use the methods defined in `Gulpfile.js` for the build.
 
-It's recommened you `npm link` this repo to the `face-ui-automation` repo when developing locally. Remember to `npm run build` everytime you make changes to the reporter.
+It's recommened you `npm link` this repo to the `face-ui-test` repo when developing locally. Remember to `npm run build` everytime you make changes to the reporter.
 
 ## Setup instructions :wrench:
 
