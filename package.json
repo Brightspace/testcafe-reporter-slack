@@ -40,6 +40,6 @@
   },
   "dependencies": {
     "dotenv": "^7.0.0",
-    "slack-node": "^0.1.8"
+    "slack-node": "git+https://github.com/mostlyfabulous/slack-node-sdk.git"
   }
 }

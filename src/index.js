@@ -56,7 +56,8 @@ export default function () {
         message = `${emojis.checkMark} ${italics(name)}`;
       }
 
-      if (loggingLevel === LoggingLevels.TEST) this.slack.addMessage(message);
+      if (loggingLevel === LoggingLevels.TEST || LoggingLevels.DEBUG)
+        this.slack.addMessage(message);
     },
 
     renderErrors(errors) {
