@@ -48,18 +48,19 @@ export default class SlackMessage {
 
   sendTestReport(nrFailedTests) {
     // Sends a summary message of tests failed as a Slack `attachments` object, works but is here for ref only
+
     this.sendMessage(
-      this.getTestReportMessage(),
-      nrFailedTests > 0 && this.loggingLevel === loggingLevels.TEST
-        ? {
-            attachments: [
-              {
-                color: "danger",
-                text: `${nrFailedTests} test(s) failed`,
-              },
-            ],
-          }
-        : null
+      this.getTestReportMessage()
+      // nrFailedTests > 0 && this.loggingLevel === loggingLevels.DEBUG
+      //   ? {
+      //       attachments: [
+      //         {
+      //           color: "danger",
+      //           text: `${nrFailedTests} test(s) failed`,
+      //         },
+      //       ],
+      //     }
+      //   : null
     );
   }
 

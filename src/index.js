@@ -92,8 +92,7 @@ export default function () {
         summaryStr += `${emojis.noEntry} ${bold(
           `${result.failedCount}/${this.testCount} failed`
         )}`;
-      }
-      if (result && result.passedCount) {
+      } else if (result && result.passedCount) {
         summaryStr += `${emojis.checkMark} ${bold(
           `${result.passedCount}/${this.testCount} passed`
         )}`;
