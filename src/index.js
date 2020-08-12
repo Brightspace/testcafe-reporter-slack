@@ -82,16 +82,17 @@ export default function () {
       )} `;
       let summaryStr = "";
 
-      if (result.skippedCount)
+      if (result && result.skippedCount)
         summaryStr += `${emojis.fastForward} ${bold(
           `${result.skippedCount} skipped`
         )} `;
 
-      if (result.failedCount) {
+      if (result && result.failedCount) {
         summaryStr += `${emojis.noEntry} ${bold(
           `${result.failedCount}/${this.testCount} failed`
         )}`;
-      } else {
+      }
+      if (result && result.passedCount) {
         summaryStr += `${emojis.checkMark} ${bold(
           `${result.passedCount}/${this.testCount} passed`
         )}`;
