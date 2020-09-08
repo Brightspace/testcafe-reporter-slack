@@ -1,10 +1,11 @@
-const gulp = require("gulp");
-const babel = require("gulp-babel");
-const mocha = require("gulp-mocha");
-const del = require("del");
+import gulp from "gulp";
+import babel from"gulp-babel";
+import mocha from "gulp-mocha";
+import del from "del";
 
-gulp.task("clean", function(cb) {
-  del("lib", cb);
+gulp.task("clean", done => {
+  del("lib", done => done());
+  done();
 });
 
 gulp.task(
@@ -12,7 +13,10 @@ gulp.task(
   gulp.series("clean", function() {
     return gulp
       .src("src/**/*.js")
-      .pipe(babel())
+      .pipe(babel({
+        presets: ['@babel/preset-env'],
+        plugins: ['dynamic-import-node'],
+        }))
       .pipe(gulp.dest("lib"));
   })
 );
@@ -25,8 +29,8 @@ gulp.task(
 );
 
 gulp.task(
-  "test",
-  gulp.series("build", function() {
+  "mocha",
+  function() {
     return gulp.src("test/**.js").pipe(
       mocha({
         ui: "bdd",
@@ -34,7 +38,12 @@ gulp.task(
         timeout: typeof v8debug === "undefined" ? 2000 : Infinity // NOTE: disable timeouts in debug
       })
     );
-  })
+  }
+)
+
+gulp.task(
+  "test",
+  gulp.series("build", "mocha")
 );
 
 gulp.task(
