@@ -4,6 +4,7 @@ import { resolvePath, isFileExists, readFile } from "./utils/fileHelpers";
 import LoggingLevels from "./const/LoggingLevels";
 
 const defaultConfig = {
+  token: process.env.TESTCAFE_SLACK_TOKEN || "xxxx-long-string-token",
   webhookUrl:
     process.env.TESTCAFE_SLACK_WEBHOOK ||
     "https://hooks.slack.com/services/*****",

@@ -11,7 +11,7 @@ function makeErrors(errDescrs) {
     return new TestRunErrorFormattableAdapter(descr.err, descr.metaInfo);
   });
 }
-
+const imgPath = "C:/D2L/face-ui-test/screenshots/2020-08-13/Firefox_79.0_Windows_10/FACE Instructor assignment edit (Modular & Final After Save Check)/00-52-39_EditAssignmentTypeSubmissionCompletion_.png"
 module.exports = [
   {
     method: "reportTaskStart",
@@ -40,7 +40,7 @@ module.exports = [
         errs: [],
         durationMs: 74000,
         unstable: true,
-        screenshotPath: "/screenshots/1445437598847",
+        screenshotPath: imgPath
       },
     ],
   },
@@ -77,7 +77,7 @@ module.exports = [
 
         durationMs: 74000,
         unstable: false,
-        screenshotPath: "/screenshots/1445437598847",
+        screenshotPath: null,
       },
     ],
   },
@@ -112,7 +112,7 @@ module.exports = [
         errs: [],
         durationMs: 74000,
         unstable: false,
-        screenshotPath: null,
+        screenshotPath: null
       },
     ],
   },

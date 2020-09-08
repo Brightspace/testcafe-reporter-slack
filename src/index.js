@@ -56,8 +56,23 @@ export default function () {
         message = `${emojis.checkMark} ${italics(name)}`;
       }
 
-      if (loggingLevel === LoggingLevels.TEST || LoggingLevels.DEBUG)
+      if (loggingLevel === LoggingLevels.TEST || LoggingLevels.DEBUG) {
         this.slack.addMessage(message);
+        if (testRunInfo.screenshotPath) {
+          let uploadAndSharePromise = new Promise((resolve, reject) => {
+            // testRunInfo.screenshots.map(screenshotObj => {
+            this.slack.uploadAndShareFile(testRunInfo.screenshotPath)
+            .then(response=>{
+              console.log("Completed share:", response.ok)
+              resolve(true);
+            })
+            .catch(err=>console.log("Error uploading and sharing screenshot", err))
+            // });
+          })
+          this.slack.callbackMessageReady.push(uploadAndSharePromise)
+        }
+      }
+
     },
 
     renderErrors(errors) {
