@@ -58,7 +58,20 @@ export default function () {
 
       if (loggingLevel === LoggingLevels.TEST || LoggingLevels.DEBUG) {
         this.slack.addMessage(message);
-        if (testRunInfo.screenshotPath) {
+        if (testRunInfo.screenshots) {
+          let uploadAndSharePromise = new Promise((resolve, reject) => {
+            testRunInfo.screenshots.map(screenshotObj => {
+            this.slack.uploadAndShareFile(screenshotObj.screenshotPath)
+            .then(response=>{
+              console.log("Completed share:", response.ok)
+              resolve(true);
+            })
+            .catch(err=>console.log("Error uploading and sharing screenshots", err))
+            });
+            this.slack.callbackMessageReady.push(uploadAndSharePromise)
+          })
+        }
+        else if (testRunInfo.screenshotPath) {
           let uploadAndSharePromise = new Promise((resolve, reject) => {
             // testRunInfo.screenshots.map(screenshotObj => {
             this.slack.uploadAndShareFile(testRunInfo.screenshotPath)

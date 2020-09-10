@@ -8,7 +8,7 @@ import { rejects } from "assert";
 export default class SlackMessage {
   constructor() {
     let slackNode = require("slack-node");
-    this.slack = new slackNode();
+    this.slack = new slackNode(config.token);
     this.slack.setWebhook(config.webhookUrl);
     this.loggingLevel = config.loggingLevel;
     this.messages = [];
