@@ -5,6 +5,7 @@ const del = require("del");
 
 gulp.task("clean", function(cb) {
   del("lib", cb);
+  cb();
 });
 
 gulp.task(
