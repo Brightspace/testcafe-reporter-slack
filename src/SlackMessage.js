@@ -102,7 +102,9 @@ export default class SlackMessage {
     if (!config.quietMode) console.log("Async message to be sent:", this.sendMessageInCallback)
     if (this.sendMessageInCallback) {
       Promise.all(this.callbackMessageReady).then(response=> {
+        if (!config.quietMode) console.log(this.callbackMessageReady.length)
         if (!config.quietMode) console.log("Sending async message");
+        if (!config.quietMode) console.log("===>", this.screenshots)
         message.blocks = message.blocks.concat(this.getErrorScreenshotsAttachments());
         this.sendMessage(message);
       });

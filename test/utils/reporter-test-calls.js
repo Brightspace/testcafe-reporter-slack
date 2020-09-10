@@ -40,7 +40,8 @@ module.exports = [
         errs: [],
         durationMs: 74000,
         unstable: true,
-        screenshotPath: imgPath
+        screenshotPath: imgPath,
+        screenshots: [{screenshotPath: imgPath}, {screenshotPath: imgPath}]
       },
     ],
   },
