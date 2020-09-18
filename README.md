@@ -50,7 +50,7 @@ Add a reporter name (`slack`) to your `reporter` object:
 }
 ```
 
-### Using TestCafe API
+### If using TestCafe API
 
 Pass the reporter name (`slack`) to the `reporter()` method:
 
@@ -65,14 +65,15 @@ testCafe
 
 ### Necessary configuration
 
-After that, you should define **.env** file with variables in your test project, hence the folder from where your call TestCafe (root directory).
+After that, you should define a **.env** file with variables for your Slack reporting. This should placed in folder from where you call TestCafe from (the root directory).
 
 ```dotenv
 # .env
 TESTCAFE_SLACK_WEBHOOK=https://hooks.slack.com/services/*****
+TESTCAFE_SLACK_CHANNEL=#channel-name
 ```
 
-This is **required minimum to has it working**.
+This is the **required minimum to have it working**.
 
 ## Options :gear:
 
@@ -130,7 +131,10 @@ TESTCAFE_SLACK_USERNAME=testcafebot
 
 #### Logging level
 
-Choose your report logging level, if you want to see each test with error stack trace, choose `TEST` (default). The second one is short & condensed which show the only number of tests which passed, failed and was skipped - `SUMMARY`.
+Choose your report logging level: 
+- `SUMMARY` Show only number of tests which passed, failed and was skipped
+- `TEST` Show report of tests that passed and failed
+- `DEBUG` Show each test with error stack trace for failed tests
 
 - via `.testcaferc.json`
 
