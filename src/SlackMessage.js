@@ -36,8 +36,9 @@ export default class SlackMessage {
             console.log("Unable to send a message to Slack");
             console.log(response);
           } else {
+            console.log(response);
             console.log(
-              "The following message has been sent to Slack: \n " +
+              "The following message has been sent to Slack: \n" +
                 JSON.stringify(message, null, "  ")
             );
           }
@@ -51,7 +52,7 @@ export default class SlackMessage {
 
     this.sendMessage(
       this.getTestReportMessage()
-      // nrFailedTests > 0 && this.loggingLevel === loggingLevels.DEBUG
+      // ,nrFailedTests > 0 && this.loggingLevel === loggingLevels.DEBUG
       //   ? {
       //       attachments: [
       //         {
