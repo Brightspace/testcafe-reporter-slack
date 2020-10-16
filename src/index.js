@@ -23,7 +23,7 @@ export default function () {
       this.slack.addMessage(
         `${emojis.coffee} ${"Starting TestCafe:"} ${bold(
           startTimeFormatted
-        )}\n${emojis.computer} Running ${bold(testCount)} tests in: ${bold(
+        )}\nRunning ${bold(testCount)} tests in: ${bold(
           userAgents
         )}\n`
       );
@@ -52,12 +52,13 @@ export default function () {
       } else if (hasErr) {
         message = `${emojis.fire} ${italics(name)} - ${bold("failed")}`;
         this.renderErrors(testRunInfo.errs);
+      } else if (loggingLevel === LoggingLevels.SUMMARY) {
+        // don't report successful tests to reduce verbosity
       } else {
-        message = `${emojis.checkMark} ${italics(name)}`;
+        message = `${italics(name)}`;
       }
 
-      if (loggingLevel === LoggingLevels.TEST || LoggingLevels.DEBUG)
-        this.slack.addMessage(message);
+      this.slack.addMessage(message);
     },
 
     renderErrors(errors) {
@@ -75,7 +76,7 @@ export default function () {
         .duration(durationMs)
         .format("h[h] mm[m] ss[s]");
 
-      const finishedStr = `${emojis.finishFlag} Testing finished at ${bold(
+      const finishedStr = `Testing finished at ${bold(
         endTimeFormatted
       )} `;
       const durationStr = `${emojis.stopWatch} Duration: ${bold(
