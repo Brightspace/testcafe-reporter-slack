@@ -54,6 +54,7 @@ export default function () {
         this.renderErrors(testRunInfo.errs);
       } else if (loggingLevel === LoggingLevels.SUMMARY) {
         // don't report successful tests to reduce verbosity
+        return;
       } else {
         message = `${italics(name)}`;
       }
