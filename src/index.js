@@ -53,7 +53,7 @@ export default function () {
         message = `${emojis.fire} ${italics(name)} - ${bold("failed")}`;
         this.renderErrors(testRunInfo.errs);
       } else if (loggingLevel === LoggingLevels.SUMMARY) {
-        // don't report successful tests to reduce verbosity
+        return; // don't report successful tests to reduce verbosity
       } else {
         message = `${italics(name)}`;
       }
