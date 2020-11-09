@@ -7,6 +7,8 @@ import { bold, italics } from "./utils/textFormatters";
 const { loggingLevel } = config;
 
 export default function () {
+  let lastSiteName = "";
+
   return {
     noColors: true,
 
@@ -32,15 +34,19 @@ export default function () {
     reportFixtureStart(name, path, meta) {
       this.currentFixtureName = name;
       this.currentFixtureMeta = meta;
-      this.slack.addMessage(
-        "*Site Tested Against:* <" +
-          this.currentFixtureMeta.siteName +
-          "|" +
-          this.currentFixtureMeta.siteName.match(/https:\/\/(\w+)/)[1] +
-          ">"
-      );
       this.slack.addMessage(`${bold(this.currentFixtureName)}`);
-      // if (loggingLevel === LoggingLevels.TEST)
+      if (lastSiteName !== this.currentFixtureMeta.siteName) {
+        console.log(this.currentFixtureMeta.siteName!==lastSiteName);
+        this.slack.addMessage(
+          "*Site Tested Against:* <" +
+            this.currentFixtureMeta.siteName +
+            "|" +
+            this.currentFixtureMeta.siteName.match(/https?:\/\/(\w+)/)[1] +
+            ">"
+        );
+      }
+      if (lastSiteName === "") lastSiteName = this.currentFixtureMeta.siteName;
+
     },
 
     reportTestDone(name, testRunInfo) {
