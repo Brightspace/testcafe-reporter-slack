@@ -34,7 +34,12 @@ export default function () {
     reportFixtureStart(name, path, meta) {
       this.currentFixtureName = name;
       this.currentFixtureMeta = meta;
+      let orgUnit = "; OrgUnit: ";
+      if (this.currentFixtureMeta.siteName.match(/ou=(\d+)?/)[1]) {
+        orgUnit += this.currentFixtureMeta.siteName.match(/ou=(\d+)?/)[1];
+      }
       this.slack.addMessage(`${bold(this.currentFixtureName)}`);
+
       if (lastSiteName !== this.currentFixtureMeta.siteName) {
         console.log(this.currentFixtureMeta.siteName!==lastSiteName);
         this.slack.addMessage(
@@ -42,6 +47,7 @@ export default function () {
             this.currentFixtureMeta.siteName +
             "|" +
             this.currentFixtureMeta.siteName.match(/https?:\/\/(\w+)/)[1] +
+            orgUnit +
             ">"
         );
       }
