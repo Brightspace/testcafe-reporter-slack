@@ -1,3 +1,4 @@
+const core = require('@actions/core')
 import config from "./config";
 import loggingLevels from "./const/LoggingLevels";
 
@@ -21,30 +22,37 @@ export default class SlackMessage {
 
   sendMessage(message, slackProperties = null) {
     // console.log("Sending this: ", message);
-    this.slack.webhook(
-      Object.assign(
-        {
-          channel: config.channel,
-          username: config.username,
-          ...message,
-        },
-        slackProperties
-      ),
-      function (err, response) {
-        if (!config.quietMode) {
-          if (err) {
-            console.log("Unable to send a message to Slack");
-            console.log(response);
-          } else {
-            console.log(response);
-            console.log(
-              "The following message has been sent to Slack: \n" +
-                JSON.stringify(message, null, "  ")
-            );
-          }
-        }
-      }
-    );
+    process.env.SLACK_MESSAGE = JSON.stringify(message);
+    try {
+      core.setOutput("SLACK_MESSAGE", message);
+    } catch (error) {
+      console.error("Could not use core.setOutput for message:" + message)
+      console.error(error);
+    }
+    // this.slack.webhook(
+    //   Object.assign(
+    //     {
+    //       channel: config.channel,
+    //       username: config.username,
+    //       ...message,
+    //     },
+    //     slackProperties
+    //   ),
+    //   function(err, response) {
+    //     if (!config.quietMode) {
+    //       if (err) {
+    //         console.log("Unable to send a message to Slack");
+    //         console.log(response);
+    //       } else {
+    //         console.log(response);
+    //         console.log(
+    //           "The following message has been sent to Slack: \n" +
+    //           JSON.stringify(message, null, "  ")
+    //         );
+    //       }
+    //     }
+    //   }
+    // );
   }
 
   sendTestReport(nrFailedTests) {
