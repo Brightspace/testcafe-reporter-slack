@@ -6,7 +6,7 @@ import { bold, italics } from "./utils/textFormatters";
 
 const { loggingLevel } = config;
 
-export default function () {
+export default function() {
   let lastSiteName = "";
 
   return {
@@ -41,14 +41,13 @@ export default function () {
       this.slack.addMessage(`${bold(this.currentFixtureName)}`);
 
       if (lastSiteName !== this.currentFixtureMeta.siteName) {
-        console.log(this.currentFixtureMeta.siteName!==lastSiteName);
         this.slack.addMessage(
           "*Site Tested Against:* <" +
-            this.currentFixtureMeta.siteName +
-            "|" +
-            this.currentFixtureMeta.siteName.match(/https?:\/\/(\w+)/)[1] +
-            orgUnit +
-            ">"
+          this.currentFixtureMeta.siteName +
+          "|" +
+          this.currentFixtureMeta.siteName.match(/https?:\/\/(\w+)/)[1] +
+          orgUnit +
+          ">"
         );
       }
       if (lastSiteName === "") lastSiteName = this.currentFixtureMeta.siteName;

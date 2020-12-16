@@ -39,6 +39,7 @@
     "testcafe": "^0.2.0-alpha"
   },
   "dependencies": {
+    "@actions/core": "^1.2.6",
     "dotenv": "^7.0.0",
     "slack-node": "git+https://github.com/mostlyfabulous/slack-node-sdk.git"
   }
