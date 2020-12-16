@@ -21,10 +21,11 @@ export default class SlackMessage {
   }
 
   sendMessage(message, slackProperties = null) {
-    // console.log("Sending this: ", message);
+    console.log("Sending this: ", message);
+    console.log("Stringified: " + JSON.stringify(message));
     process.env.SLACK_MESSAGE = JSON.stringify(message);
     try {
-      core.setOutput("SLACK_MESSAGE", message);
+      core.setOutput("SLACK_MESSAGE", JSON.stringify(message));
     } catch (error) {
       console.error("Could not use core.setOutput for message:" + message)
       console.error(error);
