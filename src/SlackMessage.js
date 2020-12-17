@@ -23,6 +23,15 @@ export default class SlackMessage {
   sendMessage(message, slackProperties = null) {
     console.log("Sending this: ", message);
     console.log("Stringified: " + JSON.stringify(message));
+
+    var fs = require('fs');
+
+    fs.writeFile('testOutput.txt', JSON.stringify(message), function (err) {
+      if (err) throw err;
+      console.log('Saved test output to testOutput.txt');
+    });
+
+    /*
     process.env.SLACK_MESSAGE = JSON.stringify(message);
     try {
       core.setOutput("SLACK_MESSAGE", JSON.stringify(message));
@@ -30,6 +39,7 @@ export default class SlackMessage {
       console.error("Could not use core.setOutput for message:" + message)
       console.error(error);
     }
+    */
     // this.slack.webhook(
     //   Object.assign(
     //     {
