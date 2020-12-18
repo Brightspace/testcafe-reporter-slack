@@ -27,14 +27,6 @@ export default class SlackMessage {
       if (err) throw err;
       console.log('Saved test output to testOutput.txt');
     });
-
-    process.env.SLACK_MESSAGE = JSON.stringify(message);
-    try {
-      core.setOutput("SLACK_MESSAGE", JSON.stringify(message));
-    } catch (error) {
-      console.error("Could not use core.setOutput for message:" + message)
-      console.error(error);
-    }
   }
 
   sendTestReport(nrFailedTests) {
