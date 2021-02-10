@@ -7,7 +7,7 @@ const ActionElementNotFoundError = require("testcafe").embeddingUtils
 const testCallsite = require("./test-callsite");
 
 function makeErrors(errDescrs) {
-  return errDescrs.map(function (descr) {
+  return errDescrs.map(function(descr) {
     return new TestRunErrorFormattableAdapter(descr.err, descr.metaInfo);
   });
 }
@@ -148,7 +148,7 @@ module.exports = [
       "./fixture3.js",
       {
         siteName:
-          "https://cd2020924185.devlms.brightspace.com/d2l/lms/dropbox/admin/folders_manage.d2l?ou=123171",
+          "https://cd2021126845.devlms.brightspace.com/d2l/le/lessons/123170/units/99728",
       },
     ],
   },
@@ -188,8 +188,8 @@ module.exports = [
         "Was unable to take a screenshot due to an error.\n\nReferenceError: someVar is not defined",
         "Was unable to take a screenshot due to an error.\n\nReferenceError: someOtherVar is not defined",
         "Was unable to take screenshots because the screenshot directory is not specified. " +
-          'To specify it, use the "-s" or "--screenshots" command line option or the ' +
-          '"screenshots" method of the test runner in case you are using API.',
+        'To specify it, use the "-s" or "--screenshots" command line option or the ' +
+        '"screenshots" method of the test runner in case you are using API.',
       ],
       {
         skippedCount: 1,
