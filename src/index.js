@@ -35,20 +35,24 @@ export default function() {
       this.currentFixtureName = name;
       this.currentFixtureMeta = meta;
       let orgUnit = "; OrgUnit: ";
-      if (this.currentFixtureMeta.siteName.match(/ou=(\d+)?/)[1]) {
-        orgUnit += this.currentFixtureMeta.siteName.match(/ou=(\d+)?/)[1];
-      }
-      this.slack.addMessage(`${bold(this.currentFixtureName)}`);
+      try {
+        if (this.currentFixtureMeta.siteName.match(/ou=(\d+)?/)) {
+          orgUnit += this.currentFixtureMeta.siteName.match(/ou=(\d+)?/)[1];
+        }
+        this.slack.addMessage(`${bold(this.currentFixtureName)}`);
 
-      if (lastSiteName !== this.currentFixtureMeta.siteName) {
-        this.slack.addMessage(
-          "*Site Tested Against:* <" +
-          this.currentFixtureMeta.siteName +
-          "|" +
-          this.currentFixtureMeta.siteName.match(/https?:\/\/(\w+)/)[1] +
-          orgUnit +
-          ">"
-        );
+        if (lastSiteName !== this.currentFixtureMeta.siteName) {
+          this.slack.addMessage(
+            "*Site Tested Against:* <" +
+            this.currentFixtureMeta.siteName +
+            "|" +
+            this.currentFixtureMeta.siteName.match(/https?:\/\/(\w+)/)[1] +
+            orgUnit +
+            ">"
+          );
+        }
+      } catch (error) {
+        console.error("Slack reporter had an metadata parsing error: ", error);
       }
       if (lastSiteName === "") lastSiteName = this.currentFixtureMeta.siteName;
 
