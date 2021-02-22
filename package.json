@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-slack",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "TestCafe slack reporter plugin, forked from https://github.com/Shafied/testcafe-reporter-slack.",
   "repository": {
     "type": "git",
