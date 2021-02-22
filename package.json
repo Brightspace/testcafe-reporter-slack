@@ -20,7 +20,8 @@
     "publish-please": "publish-please",
     "prepublish": "publish-please guard",
     "prod": "gulp --production",
-    "dev": "gulp watch"
+    "dev": "gulp watch",
+    "release": "bump -tpa -c \"[ci skip] bump version \" minor"
   },
   "keywords": [
     "testcafe",
@@ -36,11 +37,13 @@
     "normalize-newline": "^1.0.2",
     "publish-please": "^2.1.4",
     "read-file-relative": "^1.2.0",
-    "testcafe": "^0.2.0-alpha"
+    "testcafe": "^0.2.0-alpha",
+    "version-bump-prompt": "^6.1.0"
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
     "dotenv": "^7.0.0",
     "slack-node": "git+https://github.com/mostlyfabulous/slack-node-sdk.git"
+    
   }
 }
