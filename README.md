@@ -4,7 +4,7 @@
 
 This is a reporter for [TestCafe](http://devexpress.github.io/testcafe). It sends the output of test(s) to [Slack](https://slack.com/).
 
-## Purpose :dart:
+## Purpose
 
 Once configured the reporter sends test results to Slack channel, e.g.
 
