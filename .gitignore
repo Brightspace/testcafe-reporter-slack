@@ -5,3 +5,5 @@ media
 
 yarn.lock
 package-lock.json
+
+testOutput.txt
